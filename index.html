@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dex</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="dex.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+         /* Set up the gradient style */
+         .gradient-text {
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff0077, #02ddff, black);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+          }
+      /* Gradient Animation */
+      @keyframes gradient-animation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+        .animated-gradient {
+            background: linear-gradient(135deg, #ff6ec4, #7873f5);
+            background-size: 200% 200%;
+            animation: gradient-animation 4s ease infinite;
+          }
+      </style>
+</head>
+<body class="bg-black font-mono">
+    <!-- Navigation Bar -->
+    <nav class="bg-black shadow-md fixed top-0 w-full z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center py-4">
+                <!-- Logo and Title Container -->
+                <div class="flex items-center mr-auto">
+                    <img src="dex.png" alt="Brand Logo" class="h-12 w-12 mr-2 rounded-lg"> <!-- Add your logo path here -->
+                    <a href="#" class="text-2xl font-mono font-bold text-white">Dex</a>
+                </div>
+    
+                <!-- Mobile menu button -->
+                <div class="lg:hidden">
+                    <button id="nav-toggle" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+    
+                <!-- Nav Links -->
+                <div class="hidden lg:flex space-x-8 ml-auto">
+                    <a href="index.html" class="text-white font-mono hover:bg-purple-600 hover:text-gray-900 px-3 py-2 rounded-md transition">Home</a>
+                    <a href="manifesto.html" class="text-white font-mono hover:bg-purple-600 hover:text-gray-900 px-3 py-2 rounded-md transition">Manifesto</a>
+                    <a href="#" class="text-white font-mono hover:bg-purple-600 hover:text-gray-900 px-3 py-2 rounded-md transition"></a>
+                </div>
+            </div>
+    
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="lg:hidden hidden">
+                <a href="index.html" class="block py-2 text-white hover:bg-purple-600 hover:text-gray-900 px-3 py-2 rounded-md transition">Home</a>
+                <a href="manifesto.html" class="block py-2 text-white hover:bg-purple-600 hover:text-gray-900 px-3 py-2 rounded-md transition">Manifesto</a>
+                <a href="#" class="block py-2 text-white hover:bg-purple-600 hover:text-gray-900 px-3 py-2 rounded-md transition"></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-20 text-black">
+        <div>
+            <section id="home" class="min-h-screen w-full flex bg-black text-black font-bold rounded shadow-sm p-4 mb-4">
+                <div class="text-center">
+                    <h1 class="gradient-text text-2xl lg:text-4xl text-left font-mono font-bold mb-4 mx-auto px-4 md:px-44 lg:px-44 md:p-12"><br>"Created a password 🔑 but worried someone might peek? <br>Don’t worry! Just copy your password here <br>and convert it into Morse code or binary<br>—keeping it safe and sound from curious eyes!"</h1>
+                    <a href="#MorseCodeConverter" class="animated-gradient font-mono text-white px-6 py-3 rounded-lg">Convert To Morse Code</a><br><br>
+                    <a href="#BinaryCodeConverter" class="animated-gradient font-mono text-white px-6 py-3 rounded-lg">Convert To Binary</a>
+                </div>
+            </section>
+
+            <!-- Morse Code Converter Section -->
+<!-- Morse Code Converter Section -->
+<section id="MorseCodeConverter" class="flex justify-center bg-black pt-20 lg:pt-24 px-4 md:px-12 lg:px-24">
+    <div class="container mx-auto text-center w-100 h-80 lg:w-100 lg:h-80 p-6 bg-white animated-gradient shadow-lg rounded-lg flex flex-col justify-center">
+        <h1 class="text-xl font-bold mb-4">Morse Code Converter</h1>
+        <input type="text" id="morseInput" placeholder="Enter text or Morse code" class="w-full p-3 border border-gray-300 rounded mb-4">
+        
+        <div class="flex justify-between space-x-4">
+            <button onclick="convertToMorse()" class="w-1/2 p-2 bg-black text-white rounded">
+                To Morse
+            </button>
+            <button onclick="convertToText()" class="w-1/2 p-2 bg-black text-white rounded">
+                To Text
+            </button>
+        </div>
+        
+        <textarea id="morseOutput" placeholder="Output here" readonly class="w-full p-3 mt-4 border border-gray-300 rounded h-20"></textarea>
+    </div>
+</section>
+
+<!-- Binary Code Converter Section -->
+<section id="BinaryCodeConverter" class="flex justify-center bg-black pt-20 lg:pt-24 px-4 md:px-12 lg:px-24">
+    <div class="container mx-auto text-center w-100 h-80 lg:w-100 lg:h-80 p-6 bg-white animated-gradient shadow-lg rounded-lg flex flex-col justify-center">
+        <h1 class="text-xl font-bold mb-4">Binary Converter</h1>
+        <input type="text" id="binaryInput" placeholder="Enter text or binary" class="w-full p-3 border border-gray-300 rounded mb-4">
+        
+        <div class="flex justify-between space-x-4">
+            <button onclick="convertToBinary()" class="w-1/2 p-2 bg-black text-white rounded">
+                To Binary
+            </button>
+            <button onclick="convertToTextFromBinary()" class="w-1/2 p-2 bg-black text-white rounded">
+                To Text
+            </button>
+        </div>
+        
+        <textarea id="binaryOutput" placeholder="Output here" readonly class="w-full p-3 mt-4 border border-gray-300 rounded h-20"></textarea>
+    </div>
+</section>
+            <br><br>
+            <br><br><br>
+        </div>
+    </main>                  
+
+    <!-- JavaScript to toggle the mobile menu -->
+    <script>
+        const morseCodeMap = {
+            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....',
+            'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.',
+            'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+            'Y': '-.--', 'Z': '--..', 'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.', 'f': '..-.', 
+            'g': '--.', 'h': '....', 'i': '..', 'j': '.---', 'k': '-.-', 'l': '.-..', 'm': '--', 'n': '-.', 
+            'o': '---', 'p': '.--.', 'q': '--.-', 'r': '.-.', 's': '...', 't': '-', 'u': '..-', 'v': '...-', 
+            'w': '.--', 'x': '-..-', 'y': '-.--', 'z': '--..', '1': '.----', '2': '..---', '3': '...--', 
+            '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----', 
+            ' ': ' / ', '.': '.-.-.-', ',': '--..--', '?': '..--..', "'": '.----.', '!': '-.-.--', '/': '-..-.', 
+            '(': '-.--.', ')': '-.--.-', '&': '.-...', ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.', 
+            '-': '-....-', '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
+        };
+
+        const textMap = Object.fromEntries(Object.entries(morseCodeMap).map(([k, v]) => [v, k]));
+
+        function convertToMorse() {
+            const input = document.getElementById("morseInput").value;
+            let output = "";
+
+            for (let char of input) {
+                output += morseCodeMap[char] ? morseCodeMap[char] + " " : "";
+            }
+
+            document.getElementById("morseOutput").value = output.trim();
+        }
+
+        function convertToText() {
+            const input = document.getElementById("morseInput").value.trim().split(" ");
+            let output = "";
+
+            for (let code of input) {
+                output += textMap[code] ? textMap[code] : " ";
+            }
+
+            document.getElementById("morseOutput").value = output;
+        }
+
+        function convertToBinary() {
+            const input = document.getElementById("binaryInput").value;
+            let output = input.split('').map(char => char.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
+            document.getElementById("binaryOutput").value = output;
+        }
+
+        function convertToTextFromBinary() {
+            const input = document.getElementById("binaryInput").value.trim().split(" ");
+            let output = input.map(bin => String.fromCharCode(parseInt(bin, 2))).join('');
+            document.getElementById("binaryOutput").value = output;
+        }
+    </script>
+
+    <footer class="w-full bg-white animated-gradient text-white py-8 justify-center">
+        <div class="container mx-auto px-4 md:px-8 lg:px-12">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <!-- About Section -->
+            <div>
+              <h3 class="text-white text-lg font-mono font-semibold mb-4">About Dex</h3>
+              <p class="text-white font-mono text-sm leading-relaxed">
+                Dex is a fun and easy way to keep your passwords safe. It lets you convert your passwords into Morse code or Binary, turning them into secret messages only you can read. No need to worry about someone peeking; Dex hides your secrets in plain sight with simple codes that are both secure and playful.
+<br><br>
+With Dex, privacy is simple. Just copy, paste, and convert your password into a code that no one else can understand. It’s a straightforward, creative solution for securing everything from diary passwords to sensitive info, giving you peace of mind in a fun, easy-to-use format.
+            </p>
+            </div>
+        
+            <!-- Quick Links Section -->
+            <div>
+              <h3 class="text-white text-lg font-mono font-semibold mb-4">Quick Links</h3>
+              <ul class="space-y-2">
+                <li><a href="index.html" class="text-white font-mono hover:text-gray-200 transition">Home</a></li>
+                <li><a href="manifesto.html" class="text-white font-mono hover:text-gray-200 transition">Manifesto</a></li>
+              </ul>
+            </div>
+        
+            <!-- Social Media Section -->
+            <div>
+              <h3 class="text-white text-lg font-mono font-semibold mb-4">Connect with Me</h3>
+              <div class="flex space-x-4">
+                <a href="https://www.linkedin.com/in/subhadeep-paul-645621317?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="text-white hover:text-gray-200 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.038-1.85-3.038-1.852 0-2.136 1.447-2.136 2.942v5.665H9.352v-8.999h3.413v1.229h.049c.475-.9 1.637-1.85 3.37-1.85 3.605 0 4.27 2.37 4.27 5.455v6.165zM5.337 8.433c-1.146 0-2.076-.93-2.076-2.077s.93-2.077 2.076-2.077c1.146 0 2.077.93 2.077 2.077s-.931 2.077-2.077 2.077zm1.777 12.019H3.56v-8.999h3.554v8.999zM22.225 0H1.771C.791 0 0 .771 0 1.729v20.542C0 23.228.791 24 1.771 24h20.451C23.21 24 24 23.228 24 22.271V1.729C24 .771 23.21 0 22.225 0z"/>
+                      </svg>
+                      
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </body>
+    </html>
+    
+</body>
+</html>
